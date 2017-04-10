@@ -16,7 +16,7 @@ interface Note {
             </li>
         </ul>
         <textarea [(ngModel)]="text"></textarea>
-        <button (click)="add()">Add</button>
+        <button (click)="addNote()">Add</button>
     `
 })
 export class NotesComponent {
@@ -54,5 +54,9 @@ export class NotesComponent {
             .then(response => response.json() as Note[]);
     }
 
+    addNote(note:Note) {
+        this.http.post(this.notesUrl, note).toPromise()
+            .then(response => console.log("note sent, response", response) );
+    }
 
 }
