@@ -8,16 +8,8 @@ interface Note {
 
 @Component({
     selector: 'notes',
-    template: `
-        <ul>
-            <li *ngFor="let note of notes; let i=index">
-                {{note.text}}
-                <button (click)="remove(i)">remove</button>
-            </li>
-        </ul>
-        <textarea [(ngModel)]="text"></textarea>
-        <button (click)="addNote()">Add</button>
-    `
+    moduleId: module.id,
+    templateUrl: 'notes.component.html'
 })
 export class NotesComponent {
     constructor(private http: Http) {
@@ -55,7 +47,7 @@ export class NotesComponent {
     }
 
     addNote(note:Note) {
-        this.http.post(this.notesUrl, note).toPromise()
+        this.http.post(this.notesUrl, {body: note}).toPromise()
             .then(response => console.log("note sent, response", response) );
     }
 
