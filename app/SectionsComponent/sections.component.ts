@@ -15,6 +15,7 @@ interface Section {
     selector:'sections',
     moduleId:module.id,
     templateUrl:'sections.component.html'
+
 })
 export class SectionComponent{
     constructor(private http:Http) {
